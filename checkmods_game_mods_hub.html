@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>checkmods - Game Mods Hub</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        darkbg: '#000000',
+                        cardbg: '#0d0d0d',
+                        bordercolor: '#262626',
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #000000;
+            color: #ededed;
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #000000;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #262626;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #404040;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-darkbg text-neutral-100 flex flex-col selection:bg-white selection:text-black">
+
+    <!-- Top Header Notice as requested -->
+    <div class="bg-black text-neutral-300 text-xs sm:text-sm py-2.5 text-center border-b border-bordercolor font-medium tracking-wide px-4">
+        Mods were made by max and aug a3 and dio help!
+    </div>
+
+    <!-- Navigation Header -->
+    <header class="sticky top-0 z-50 backdrop-blur-md bg-black/90 border-b border-bordercolor">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <a href="#" class="text-2xl sm:text-3xl tracking-tighter uppercase font-black text-white flex items-center gap-1">
+                    check<span class="text-neutral-500 font-light">mods</span>
+                    <span class="inline-block w-2 h-2 bg-white rounded-full ml-0.5 animate-pulse"></span>
+                </a>
+            </div>
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-neutral-400">
+                <a href="#weapons" class="hover:text-white transition-colors">Weapons</a>
+                <a href="#maps" class="hover:text-white transition-colors">Maps</a>
+                <a href="#mods" class="hover:text-white transition-colors">Mods</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero & Real-time Search Section -->
+    <section class="relative pt-16 pb-12 px-4 sm:px-6 lg:px-8 border-b border-bordercolor bg-gradient-to-b from-[#000000] to-[#0a0a0a]">
+        <div class="max-w-4xl mx-auto text-center space-y-6">
+            <h1 class="text-4xl sm:text-6xl font-black tracking-tight text-white uppercase">
+                Game Mods Repository
+            </h1>
+            <p class="text-neutral-400 text-base sm:text-lg max-w-2xl mx-auto font-light">
+                Browse high-performance weapons, custom maps, and game modifications. Ready for Visual Studio Code editing.
+            </p>
+            
+            <!-- Working Search Bar -->
+            <div class="relative max-w-2xl mx-auto pt-2">
+                <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none mt-2">
+                    <svg class="w-5 h-5 text-neutral-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                    </svg>
+                </div>
+                <input type="text" id="searchInput" oninput="filterMods()" placeholder="Search weapons, maps, or mods in real-time..." class="w-full pl-12 pr-4 py-4 bg-cardbg border border-bordercolor rounded-xl text-white placeholder-neutral-500 focus:outline-none focus:border-white transition-colors shadow-inner text-sm sm:text-base">
+            </div>
+
+            <!-- Category Filter Pills -->
+            <div class="flex flex-wrap justify-center gap-2 pt-2 text-xs">
+                <button onclick="filterCategory('all')" id="pill-all" class="px-4 py-2 rounded-full border border-white bg-white text-black font-semibold transition-all">All Sections</button>
+                <button onclick="filterCategory('weapons')" id="pill-weapons" class="px-4 py-2 rounded-full border border-bordercolor bg-cardbg text-neutral-400 hover:border-white hover:text-white transition-all">Weapons (10)</button>
+                <button onclick="filterCategory('maps')" id="pill-maps" class="px-4 py-2 rounded-full border border-bordercolor bg-cardbg text-neutral-400 hover:border-white hover:text-white transition-all">Maps (10)</button>
+                <button onclick="filterCategory('mods')" id="pill-mods" class="px-4 py-2 rounded-full border border-bordercolor bg-cardbg text-neutral-400 hover:border-white hover:text-white transition-all">Mods (3)</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content Container -->
+    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-20 w-full">
+
+        <!-- SECTION 1: WEAPONS -->
+        <section id="weapons" class="mod-section space-y-6" data-category="weapons">
+            <div class="flex items-center justify-between border-b border-bordercolor pb-4">
+                <div>
+                    <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-white flex items-center gap-3">
+                        <span class="w-2 h-6 bg-white rounded-sm inline-block"></span>
+                        Weapons <span class="text-xs uppercase px-2.5 py-1 bg-neutral-900 border border-bordercolor text-neutral-400 rounded-md font-mono">10 items</span>
+                    </h2>
+                    <p class="text-neutral-500 text-sm mt-1">Weapon models and skins (.zip / .rar)</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+                <script>
+                    const weaponsList = [
+  { title: "MK18 DEADCHECK", author: "Aug A3", file: "MK18_DeadCheck_30Round_FIXED.zip", desc: "MK18 30 Round Fixed weapon mod." },
+  { title: "MOSSBERG 500", author: "Aug A3", file: "Mossberg500_DeadCheck.zip", desc: "Mossberg 500 shotgun mod." },
+  { title: "M4 V2", author: "Max", file: "M4-V2.zip", desc: "M4 V2 automatic rifle mod." },
+  { title: "FN-FNC CAR-15", author: "Aug A3", file: "FN-FNC CAR-15 Fixed.zip", desc: "FN-FNC CAR-15 fixed assault rifle." },
+  { title: "MINI 14", author: "Aug A3", file: "mini14.zip", desc: "Mini 14 weapon with ecotech." },
+  { title: "SOON", author: "SOON", file: "#", desc: "Placeholder weapon ready to edit in VS Code." },
+  { title: "SOON", author: "SOON", file: "#", desc: "Placeholder weapon ready to edit in VS Code." },
+  { title: "SOON", author: "SOON", file: "#", desc: "Placeholder weapon ready to edit in VS Code." },
+  { title: "SOON", author: "SOON", file: "#", desc: "Placeholder weapon ready to edit in VS Code." }
+];
+
+                    weaponsList.forEach((item, idx) => {
+                        document.write(`
+                            <div class="mod-card bg-cardbg border border-bordercolor rounded-xl p-4 flex flex-col justify-between hover:border-neutral-500 transition-all group" data-name="${item.title.toLowerCase()} ${item.author.toLowerCase()} weapons">
+                                <div>
+                                    <div class="h-32 bg-neutral-950 rounded-lg border border-bordercolor mb-3 flex items-center justify-center overflow-hidden relative group-hover:bg-neutral-900 transition-colors">
+                                        <span class="font-mono text-xs text-neutral-600 group-hover:text-neutral-400 transition-colors">WEAPON_${String(idx+1).padStart(2, '0')}</span>
+                                    </div>
+                                    <h3 class="font-semibold text-white text-sm sm:text-base truncate">${item.title}</h3>
+                                    <p class="text-xs text-neutral-500 mt-0.5">By ${item.author}</p>
+                                    <p class="text-xs text-neutral-400 mt-2 line-clamp-2">${item.desc}</p>
+                                </div>
+                                <div class="mt-4 pt-3 border-t border-bordercolor flex items-center justify-between">
+                                    <span class="text-[10px] font-mono text-neutral-500 uppercase">ZIP / RAR</span>
+                                    <a href="${item.file}" download class="text-xs font-medium bg-neutral-900 border border-bordercolor px-3 py-1.5 rounded-md hover:bg-white hover:text-black transition-all">Download</a>
+                                </div>
+                            </div>
+                        `);
+                    });
+                </script>
+            </div>
+        </section>
+
+        <!-- SECTION 2: MAPS -->
+        <section id="maps" class="mod-section space-y-6" data-category="maps">
+            <div class="flex items-center justify-between border-b border-bordercolor pb-4">
+                <div>
+                    <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-white flex items-center gap-3">
+                        <span class="w-2 h-6 bg-white rounded-sm inline-block"></span>
+                        Maps <span class="text-xs uppercase px-2.5 py-1 bg-neutral-900 border border-bordercolor text-neutral-400 rounded-md font-mono">10 items</span>
+                    </h2>
+                    <p class="text-neutral-500 text-sm mt-1">Custom levels and arenas (.zip / .rar)</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+<h1>SOON</h1>
+            </div>
+        </section>
+
+        <!-- SECTION 3: MODS -->
+        <section id="mods" class="mod-section space-y-6" data-category="mods">
+            <div class="flex items-center justify-between border-b border-bordercolor pb-4">
+                <div>
+                    <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-white flex items-center gap-3">
+                        <span class="w-2 h-6 bg-white rounded-sm inline-block"></span>
+                        Mods <span class="text-xs uppercase px-2.5 py-1 bg-neutral-900 border border-bordercolor text-neutral-400 rounded-md font-mono">3 items</span>
+                    </h2>
+                    <p class="text-neutral-500 text-sm mt-1">Gameplay overhauls and utility mods (.zip / .rar)</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+                <script>
+                    const modsList = [
+                        { title: "CIVILIAN HEROES", author: "Dio", file: "Civilian-Heroes-1.3.0.zip", desc: "Civilian Heroes mod pack beta and buggy its gonna be updated soon." },
+                     { title: "WEAPON DROP", author: "DIO", file: "Weapon-Drop-1.1.0.zip", desc: "Weapon drop mod mos press g to throw the wepone e to pick it up" }
+                    ];
+
+                    modsList.forEach((item, idx) => {
+                        document.write(`
+                            <div class="mod-card bg-cardbg border border-bordercolor rounded-xl p-4 flex flex-col justify-between hover:border-neutral-500 transition-all group" data-name="${item.title.toLowerCase()} ${item.author.toLowerCase()} mods">
+                                <div>
+                                    <div class="h-32 bg-neutral-950 rounded-lg border border-bordercolor mb-3 flex items-center justify-center overflow-hidden relative group-hover:bg-neutral-900 transition-colors">
+                                        <span class="font-mono text-xs text-neutral-600 group-hover:text-neutral-400 transition-colors">MOD_${String(idx+1).padStart(2, '0')}</span>
+                                    </div>
+                                    <h3 class="font-semibold text-white text-sm sm:text-base truncate">${item.title}</h3>
+                                    <p class="text-xs text-neutral-500 mt-0.5">By ${item.author}</p>
+                                    <p class="text-xs text-neutral-400 mt-2 line-clamp-2">${item.desc}</p>
+                                </div>
+                                <div class="mt-4 pt-3 border-t border-bordercolor flex items-center justify-between">
+                                    <span class="text-[10px] font-mono text-neutral-500 uppercase">ZIP / RAR</span>
+                                    <a href="${item.file}" download class="text-xs font-medium bg-neutral-900 border border-bordercolor px-3 py-1.5 rounded-md hover:bg-white hover:text-black transition-all">Download</a>
+                                </div>
+                            </div>
+                        `);
+                    });
+                </script>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer as requested -->
+    <footer class="border-t border-bordercolor py-8 bg-[#000000] text-center text-xs text-neutral-500 space-y-2">
+        <div class="max-w-7xl mx-auto px-4 space-y-1">
+            <p class="font-bold tracking-widest text-neutral-400 uppercase">CHECKMODS &copy; 2026</p>
+            <p class="text-neutral-400 font-medium">Made by aug a3</p>
+        </div>
+    </footer>
+
+    <!-- Search Filter Logic Script -->
+    <script>
+        function filterMods() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const cards = document.querySelectorAll('.mod-card');
+
+            cards.forEach(card => {
+                const name = card.getAttribute('data-name');
+                if (name.includes(query)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        function filterCategory(category) {
+            const sections = document.querySelectorAll('.mod-section');
+            const pills = document.querySelectorAll('[id^="pill-"]');
+
+            pills.forEach(p => {
+                p.className = "px-4 py-2 rounded-full border border-bordercolor bg-cardbg text-neutral-400 hover:border-white hover:text-white transition-all";
+            });
+
+            const activePill = document.getElementById(`pill-${category}`);
+            if (activePill) {
+                activePill.className = "px-4 py-2 rounded-full border border-white bg-white text-black font-semibold transition-all";
+            }
+
+            sections.forEach(sec => {
+                if (category === 'all' || sec.getAttribute('data-category') === category) {
+                    sec.style.display = 'block';
+                } else {
+                    sec.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
